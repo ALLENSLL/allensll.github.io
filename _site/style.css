@@ -280,6 +280,14 @@ nav a {
   }
 }
 
+.post {
+  font-family: Georgia, Times, serif;
+}
+
+.page {
+  font-family: Georgia, Times, serif;
+}
+
 .posts > .post {
   padding-bottom: 2em;
   border-bottom: 1px solid #eee;
