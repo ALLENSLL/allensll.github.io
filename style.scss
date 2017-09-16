@@ -252,6 +252,9 @@ nav {
 .footer {
   font-family: Georgia, Times, serif;
 }
+#main {
+  min-height: 320px;
+}
 //
 
 .posts > .post {
@@ -285,7 +288,7 @@ nav {
 }
 
 .wrapper-footer {
-  margin-top: 150px;
+  margin-top: 40px;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   background-color: $lightGray;
