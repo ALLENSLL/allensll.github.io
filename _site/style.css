@@ -296,6 +296,14 @@ nav a {
   min-height: 320px;
 }
 
+.post > h1, h2, h3, h4, h5, h6 {
+  font-family: Georgia, Times, serif;
+}
+
+.page > h1, h2, h3, h4, h5, h6 {
+  font-family: Georgia, Times, serif;
+}
+
 .posts > .post {
   padding-bottom: 2em;
   border-bottom: 1px solid #eee;
