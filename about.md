@@ -11,7 +11,7 @@ I grew up in Yulin,Shaanxi,China.
 
 ### More Information
 
-Here are some *Keywords* about me: *Computer Science*, *Data Mining*, *Sports*, *Read*, *Search*, *Design*,  *Xi'an*
+Here are some *Keywords* about me: *Computer Science*, *Data Science*, *Sports*, *Read*, *Search*, *Design*,  *Xi'an*
 
 ### Contact me
 
