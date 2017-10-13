@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hello World – allensll – HomePage</title>
+    <title>A brief introduction to Dimensionality Reduction – allensll – HomePage</title>
 
         <meta charset="utf-8" />
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
@@ -9,21 +9,27 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
 
     
-    <meta name="description" content="Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).
+    <meta name="description" content="Dimensionality reduction can be divided  into feature selection and feature extraction, this text concerns about feature extraction, for feature extraction, there are linear dimensionality reduction and nonlinear dimensionality reduction techniques.
+
 " />
-    <meta property="og:description" content="Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).
+    <meta property="og:description" content="Dimensionality reduction can be divided  into feature selection and feature extraction, this text concerns about feature extraction, for feature extraction, there are linear dimensionality reduction and nonlinear dimensionality reduction techniques.
+
 " />
     
     <meta name="author" content="allensll" />
 
     
-    <meta property="og:title" content="Hello World" />
-    <meta property="twitter:title" content="Hello World" />
+    <meta property="og:title" content="A brief introduction to Dimensionality Reduction" />
+    <meta property="twitter:title" content="A brief introduction to Dimensionality Reduction" />
     
 
     <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
 
     <link rel="stylesheet" type="text/css" href="/style.css" />
     <link rel="alternate" type="application/rss+xml" title="allensll - HomePage" href="/feed.xml" />
@@ -53,10 +59,96 @@
 
     <div id="main" role="main" class="container">
       <article class="post">
-  <h1>Hello World</h1>
+  <h2>A brief introduction to Dimensionality Reduction</h2>
 
   <div class="entry">
-    <p>Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).</p>
+    <p>Dimensionality reduction can be divided  into <em>feature selection</em> and <em>feature extraction</em>, this text concerns about feature extraction, for feature extraction, there are <em>linear dimensionality reduction</em> and <em>nonlinear dimensionality reduction</em> techniques.</p>
+
+<ul>
+  <li>
+    <p><em>linear dimensionality reduction</em>: PCA</p>
+  </li>
+  <li>
+    <p><em>nonlinear dimensionality reduction</em>: MDS Isomap LLE</p>
+  </li>
+</ul>
+
+<h3 id="principal-component-analysis">Principal component analysis</h3>
+
+<p>Principal Component Analysis a classical technique for dimensionality reducion, Goal of PCA is to find an orthogonal linear transformation that transforms the data to a new coordinates system such that the greatest variance by some projection of the data comes to lie on the first coordinate(called the first principal component), the second greatest variance on the second coordinate, and so on.
+we can generalize PCA to four steps:</p>
+
+<ul>
+  <li>Step 1. Centering the data</li>
+  <li>Step 2. Find the covariance matrix</li>
+  <li>Step 3. Calculate the eigenvectors and eigenvalues of the covariance matrix</li>
+  <li>Step 4. Select principal component and form a transformational matrix</li>
+  <li>Step 5. Calculate the new data</li>
+</ul>
+
+<h4 id="bibliography--external-links"><em>Bibliography &amp; External links</em></h4>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Dimensionality_reduction">“Dimensionality reduction”</a>. wikipedia.org.</li>
+  <li><a href="https://en.wikipedia.org/wiki/Principal_component_analysis">“Principal Component Analysis”</a>. wikipedia.org.</li>
+  <li><a href="http://luthuli.cs.uiuc.edu/~daf/courses/CS-498-DAF-PS/Lecture%209%20-%20PCA.pdf">UIUC CS498 Lecture 9 - PCA.pdf</a>. cs.illinois.edu</li>
+  <li><a href="http://www.cs.otago.ac.nz/cosc453/student_tutorials/principal_components.pdf">“A tutorial on Principal Components Analysis”</a>. cs.otago.ac.nz.</li>
+  <li><a href="http://www.ams.org/samplings/feature-column/fcarc-svd">“We Recommend a Singular Value Decomposition”</a>. ams.org.</li>
+</ul>
+
+<h3 id="multidimensional-scaling">Multidimensional Scaling</h3>
+
+<p>Multidimensional Scaling is a form of non-linear dimensionality reduction. Goal of Multidimensional scaling: given raw data‘s pairwise dissmilarities, reconstruct a map that preserves distances. MDS is a family of different algorithms, including Classsical MDS, Metric MDS, Non-metric MDS. When using Classical MDS, you need to do a eigenvalue decomposion for the coordinate matrix. So essentially Classical MDS do the same thing like PCA. Classical MDS assumes Euclidean distances. So this is not applicable for direct dissimilarity ratings.</p>
+
+<p>Classical MDS try to find an optional configuration <script type="math/tex">x_{i}</script> that gives <script type="math/tex">d_{ij} \approx \hat{d}_{ij} = \left \lVert x_{i} - x_{j} \right \rVert _{2}</script> as close as possible. Let’s relaxing Classical MDS by allowing <script type="math/tex">d_{ij} \approx \hat{d}_{ij} \approx f(d_{ij})</script>, <script type="math/tex">f</script> is a monotone function(<a href="https://en.wikipedia.org/wiki/Isotonic_regression">Isotonic regression</a>). we named it as metric MDS if dissimilarities <script type="math/tex">d_{ij}</script> are quantitative and non-metric MDS if <script type="math/tex">d_{ij}</script> are qualitative. Unlike Classical MDS, metric or non-metric MDS is an optimization process(<a href="https://en.wikipedia.org/wiki/Stress_majorization">Stress majorization</a>) minimzing stress function, and is solved by iterative algorithms.</p>
+
+<h4 id="bibliography--extermal-links"><em>Bibliography &amp; Extermal links</em></h4>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Nonlinear_dimensionality_reduction">“Nonlinear dimensionality reduction”</a>. wikipedia.org.</li>
+  <li><a href="https://en.wikipedia.org/wiki/Multidimensional_scaling">“Multidimensional Scaling”</a>. wikipedia.org.</li>
+  <li><a href="http://www.stat.pitt.edu/sungkyu/course/2221Fall13/lec8_mds_combined.pd">PITT STAT 2221 Lecture 8: Multidimensional scaling</a>. stat.pitt.edu.</li>
+</ul>
+
+<h3 id="isomap">Isomap</h3>
+
+<p>Isomap and LLE bring research boom of manifold learning—is usually considered to be a branch of the nonlinear dimensionality reduction. Goal of Isomap is to find an isometric mapping configuration and keep the <a href="https://en.wikipedia.org/wiki/Geographical_distance">geodesic distances</a> on the manifold. we can generalize Isomap to two steps:</p>
+
+<ul>
+  <li>Step 1. Calculate the geodesic distances
+    <ul>
+      <li>Determine the neighbors of each point</li>
+      <li>Construct a neighborhood graph</li>
+      <li>Compute shortest path between two nodes</li>
+    </ul>
+  </li>
+  <li>Step 2. Compute lower-dimensional embedding
+    <ul>
+      <li>use MDS</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="bibliography--external-links-1"><em>Bibliography &amp; External links</em></h4>
+
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Isomap">“Isomap”</a>. wikipedia.org.</li>
+  <li><a href="http://web.mit.edu/cocosci/isomap/isomap.html">“A Global Geometric Framework for Nonlinear Dimensionality Reduction”</a>. mit.edu.</li>
+  <li><a href="http://www.cad.zju.edu.cn/reports/%C1%F7%D0%CE%D1%A7%CF%B0.pdf">“流形学习” ZJU 何晓飞</a>. cad.zju.edu.cn.</li>
+</ul>
+
+<h3 id="locally-linear-embedding">Locally Linear Embedding</h3>
+
+<p>Locally Linear Embedding is a milestone in nonlinear dimensionality reduction. LLE tends to handle non-uniform sample densities poorly because there is no fixed unit to prevent the weights from drifting as various regions differ in sample densities.</p>
+
+<h4 id="bibliography--external-links-2"><em>Bibliography &amp; External links</em></h4>
+
+<ul>
+  <li><a href="https://www.cs.nyu.edu/~roweis/lle/">“Locally Linear Embedding”</a>. cs.nyu.edu.</li>
+  <li><a href="https://www.cs.nyu.edu/~roweis/lle/papers/lleintro.pdf">Saul, Lawrence K., and Sam T. Roweis. “An introduction to locally linear embedding.”</a> unpublished. Available at: http://www. cs. toronto. edu/~ roweis/lle/publications. html (2000).</li>
+  <li><a href="http://www.jmlr.org/papers/volume4/saul03a/saul03a.pdf">Think globally, fit locally: unsupervised learning of low dimensional manifolds</a>. jmlr.org.</li>
+  <li><a href="https://www.khanacademy.org/math/multivariable-calculus/applications-of-multivariable-derivatives/constrained-optimization/a/lagrange-multipliers-single-constraint">“Lagrange multipliers”</a>. khanacademy.org.</li>
+</ul>
 
   </div>
 

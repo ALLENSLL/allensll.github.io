@@ -1,1 +1,87 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-09-16T13:40:56+08:00</updated><id>http://localhost:4000/</id><title type="html">allensll</title><subtitle>HomePage</subtitle><entry><title type="html">Hello World</title><link href="http://localhost:4000/Hello-World/" rel="alternate" type="text/html" title="Hello World" /><published>2017-07-25T00:00:00+08:00</published><updated>2017-07-25T00:00:00+08:00</updated><id>http://localhost:4000/Hello-World</id><content type="html" xml:base="http://localhost:4000/Hello-World/">&lt;p&gt;Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).&lt;/p&gt;</content><author><name></name></author><summary type="html">Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).</summary></entry></feed>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-10-13T23:37:26+08:00</updated><id>http://localhost:4000/</id><title type="html">allensll</title><subtitle>HomePage</subtitle><entry><title type="html">A brief introduction to Dimensionality Reduction</title><link href="http://localhost:4000/Hello-World/" rel="alternate" type="text/html" title="A brief introduction to Dimensionality Reduction" /><published>2017-07-25T00:00:00+08:00</published><updated>2017-07-25T00:00:00+08:00</updated><id>http://localhost:4000/Hello-World</id><content type="html" xml:base="http://localhost:4000/Hello-World/">&lt;p&gt;Dimensionality reduction can be divided  into &lt;em&gt;feature selection&lt;/em&gt; and &lt;em&gt;feature extraction&lt;/em&gt;, this text concerns about feature extraction, for feature extraction, there are &lt;em&gt;linear dimensionality reduction&lt;/em&gt; and &lt;em&gt;nonlinear dimensionality reduction&lt;/em&gt; techniques.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;linear dimensionality reduction&lt;/em&gt;: PCA&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;em&gt;nonlinear dimensionality reduction&lt;/em&gt;: MDS Isomap LLE&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;principal-component-analysis&quot;&gt;Principal component analysis&lt;/h3&gt;
+
+&lt;p&gt;Principal Component Analysis a classical technique for dimensionality reducion, Goal of PCA is to find an orthogonal linear transformation that transforms the data to a new coordinates system such that the greatest variance by some projection of the data comes to lie on the first coordinate(called the first principal component), the second greatest variance on the second coordinate, and so on.
+we can generalize PCA to four steps:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Step 1. Centering the data&lt;/li&gt;
+  &lt;li&gt;Step 2. Find the covariance matrix&lt;/li&gt;
+  &lt;li&gt;Step 3. Calculate the eigenvectors and eigenvalues of the covariance matrix&lt;/li&gt;
+  &lt;li&gt;Step 4. Select principal component and form a transformational matrix&lt;/li&gt;
+  &lt;li&gt;Step 5. Calculate the new data&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;bibliography--external-links&quot;&gt;&lt;em&gt;Bibliography &amp;amp; External links&lt;/em&gt;&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Dimensionality_reduction&quot;&gt;“Dimensionality reduction”&lt;/a&gt;. wikipedia.org.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Principal_component_analysis&quot;&gt;“Principal Component Analysis”&lt;/a&gt;. wikipedia.org.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://luthuli.cs.uiuc.edu/~daf/courses/CS-498-DAF-PS/Lecture%209%20-%20PCA.pdf&quot;&gt;UIUC CS498 Lecture 9 - PCA.pdf&lt;/a&gt;. cs.illinois.edu&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.cs.otago.ac.nz/cosc453/student_tutorials/principal_components.pdf&quot;&gt;“A tutorial on Principal Components Analysis”&lt;/a&gt;. cs.otago.ac.nz.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.ams.org/samplings/feature-column/fcarc-svd&quot;&gt;“We Recommend a Singular Value Decomposition”&lt;/a&gt;. ams.org.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;multidimensional-scaling&quot;&gt;Multidimensional Scaling&lt;/h3&gt;
+
+&lt;p&gt;Multidimensional Scaling is a form of non-linear dimensionality reduction. Goal of Multidimensional scaling: given raw data‘s pairwise dissmilarities, reconstruct a map that preserves distances. MDS is a family of different algorithms, including Classsical MDS, Metric MDS, Non-metric MDS. When using Classical MDS, you need to do a eigenvalue decomposion for the coordinate matrix. So essentially Classical MDS do the same thing like PCA. Classical MDS assumes Euclidean distances. So this is not applicable for direct dissimilarity ratings.&lt;/p&gt;
+
+&lt;p&gt;Classical MDS try to find an optional configuration &lt;script type=&quot;math/tex&quot;&gt;x_{i}&lt;/script&gt; that gives &lt;script type=&quot;math/tex&quot;&gt;d_{ij} \approx \hat{d}_{ij} = \left \lVert x_{i} - x_{j} \right \rVert _{2}&lt;/script&gt; as close as possible. Let’s relaxing Classical MDS by allowing &lt;script type=&quot;math/tex&quot;&gt;d_{ij} \approx \hat{d}_{ij} \approx f(d_{ij})&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; is a monotone function(&lt;a href=&quot;https://en.wikipedia.org/wiki/Isotonic_regression&quot;&gt;Isotonic regression&lt;/a&gt;). we named it as metric MDS if dissimilarities &lt;script type=&quot;math/tex&quot;&gt;d_{ij}&lt;/script&gt; are quantitative and non-metric MDS if &lt;script type=&quot;math/tex&quot;&gt;d_{ij}&lt;/script&gt; are qualitative. Unlike Classical MDS, metric or non-metric MDS is an optimization process(&lt;a href=&quot;https://en.wikipedia.org/wiki/Stress_majorization&quot;&gt;Stress majorization&lt;/a&gt;) minimzing stress function, and is solved by iterative algorithms.&lt;/p&gt;
+
+&lt;h4 id=&quot;bibliography--extermal-links&quot;&gt;&lt;em&gt;Bibliography &amp;amp; Extermal links&lt;/em&gt;&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Nonlinear_dimensionality_reduction&quot;&gt;“Nonlinear dimensionality reduction”&lt;/a&gt;. wikipedia.org.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Multidimensional_scaling&quot;&gt;“Multidimensional Scaling”&lt;/a&gt;. wikipedia.org.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.stat.pitt.edu/sungkyu/course/2221Fall13/lec8_mds_combined.pd&quot;&gt;PITT STAT 2221 Lecture 8: Multidimensional scaling&lt;/a&gt;. stat.pitt.edu.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;isomap&quot;&gt;Isomap&lt;/h3&gt;
+
+&lt;p&gt;Isomap and LLE bring research boom of manifold learning—is usually considered to be a branch of the nonlinear dimensionality reduction. Goal of Isomap is to find an isometric mapping configuration and keep the &lt;a href=&quot;https://en.wikipedia.org/wiki/Geographical_distance&quot;&gt;geodesic distances&lt;/a&gt; on the manifold. we can generalize Isomap to two steps:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Step 1. Calculate the geodesic distances
+    &lt;ul&gt;
+      &lt;li&gt;Determine the neighbors of each point&lt;/li&gt;
+      &lt;li&gt;Construct a neighborhood graph&lt;/li&gt;
+      &lt;li&gt;Compute shortest path between two nodes&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Step 2. Compute lower-dimensional embedding
+    &lt;ul&gt;
+      &lt;li&gt;use MDS&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;bibliography--external-links-1&quot;&gt;&lt;em&gt;Bibliography &amp;amp; External links&lt;/em&gt;&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Isomap&quot;&gt;“Isomap”&lt;/a&gt;. wikipedia.org.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://web.mit.edu/cocosci/isomap/isomap.html&quot;&gt;“A Global Geometric Framework for Nonlinear Dimensionality Reduction”&lt;/a&gt;. mit.edu.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.cad.zju.edu.cn/reports/%C1%F7%D0%CE%D1%A7%CF%B0.pdf&quot;&gt;“流形学习” ZJU 何晓飞&lt;/a&gt;. cad.zju.edu.cn.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;locally-linear-embedding&quot;&gt;Locally Linear Embedding&lt;/h3&gt;
+
+&lt;p&gt;Locally Linear Embedding is a milestone in nonlinear dimensionality reduction. LLE tends to handle non-uniform sample densities poorly because there is no fixed unit to prevent the weights from drifting as various regions differ in sample densities.&lt;/p&gt;
+
+&lt;h4 id=&quot;bibliography--external-links-2&quot;&gt;&lt;em&gt;Bibliography &amp;amp; External links&lt;/em&gt;&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.cs.nyu.edu/~roweis/lle/&quot;&gt;“Locally Linear Embedding”&lt;/a&gt;. cs.nyu.edu.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.cs.nyu.edu/~roweis/lle/papers/lleintro.pdf&quot;&gt;Saul, Lawrence K., and Sam T. Roweis. “An introduction to locally linear embedding.”&lt;/a&gt; unpublished. Available at: http://www. cs. toronto. edu/~ roweis/lle/publications. html (2000).&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.jmlr.org/papers/volume4/saul03a/saul03a.pdf&quot;&gt;Think globally, fit locally: unsupervised learning of low dimensional manifolds&lt;/a&gt;. jmlr.org.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.khanacademy.org/math/multivariable-calculus/applications-of-multivariable-derivatives/constrained-optimization/a/lagrange-multipliers-single-constraint&quot;&gt;“Lagrange multipliers”&lt;/a&gt;. khanacademy.org.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Dimensionality reduction can be divided into feature selection and feature extraction, this text concerns about feature extraction, for feature extraction, there are linear dimensionality reduction and nonlinear dimensionality reduction techniques.</summary></entry></feed>
