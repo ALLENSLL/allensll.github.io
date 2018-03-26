@@ -86,21 +86,29 @@
   </li>
   <li>
     <p>CUDA Toolkit 9.0 request at least Kernel 4.4 for Ubuntu 16.04, so I should update Kernel after install Ubuntu. All mainline kernel build can be downloaded <a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/">here</a> you can use wget command to download kernel.</p>
-    <pre><code class="language-Shell">wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.124/linux-headers-4.4.124-0404124_4.4.124-0404124.201803250430_all.deb
-wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.124/linux-headers-4.4.124-0404124-generic_4.4.124-0404124.201803250430_amd64.deb
-wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.124/linux-image-4.4.124-0404124-generic_4.4.124-0404124.201803250430_amd64.deb
-</code></pre>
-    <p>install the packages.</p>
-    <pre><code class="language-Shell">dpkg -i *.deb
-</code></pre>
-    <p>update grub and reboot the system.</p>
-    <pre><code class="language-Shell">sudo update-grub
-sudo reboot
-</code></pre>
-    <p>check the kernel version.</p>
-    <pre><code class="language-Shell">uname -r
-</code></pre>
-  </li>
+  <!-- </li>
+</ul> -->
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.124/ <span class="se">\</span>
+linux-headers-4.4.124-0404124_4.4.124-0404124.201803250430_all.deb
+wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.124/ <span class="se">\</span>
+linux-headers-4.4.124-0404124-generic_4.4.124-0404124.201803250430_amd64.deb
+wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.124/ <span class="se">\</span>
+linux-image-4.4.124-0404124-generic_4.4.124-0404124.201803250430_amd64.deb</code></pre></figure>
+
+<p>install the packages.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">dpkg -i <span class="k">*</span>.deb</code></pre></figure>
+
+<p>update grub and reboot the system.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">sudo update-grub
+sudo reboot</code></pre></figure>
+
+<p>check the kernel version.</p>
+
+<figure class="highlight"><pre><code class="language-shell" data-lang="shell">uname -r</code></pre></figure>
+</li>
 </ul>
 
 <h3 id="step-2-installing-nvidia-software">Step 2 installing NVIDIA software</h3>
@@ -115,41 +123,35 @@ sudo reboot
       <li>Disable Noveau drivers.<br />
   pushing <code class="highlighter-rouge">Ctrl</code>+<code class="highlighter-rouge">Alt</code>+<code class="highlighter-rouge">F1</code> and login,<br />
   type <code class="highlighter-rouge">sudo service lightdm stop</code>,<br />
-  create a file: <code class="highlighter-rouge">/etc/modprobe.d/blacklist-nouveau.conf</code> and type follow:
-        <pre><code class="language-Shell">  blacklist nouveau
-  options nouveau modeset=0
-</code></pre>
-        <p>reboot and verify Noveau not loaded.</p>
-        <pre><code class="language-Shell">  lsmod | grep nouveau
-</code></pre>
+  create a file: <code class="highlighter-rouge">/etc/modprobe.d/blacklist-nouveau.conf</code> and type follow:</li>
+  <figure class="highlight"><pre><code class="language-shell" data-lang="shell">blacklist nouveau<br>options nouveau <span class="nv">modeset</span><span class="o">=</span>0</code></pre></figure>
+      <li>reboot and verify Noveau not loaded.
+      <figure class="highlight"><pre><code class="language-shell" data-lang="shell">lsmod | grep nouveau</code></pre></figure>
       </li>
       <li>install cuda.
-        <pre><code class="language-Shell">  sudo dpkg -i cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64.deb
-  sudo apt-key add /var/cuda-repo-9-0-local/7fa2af80.pub
-  sudo apt-get update
-  sudo apt-get install cuda
-</code></pre>
+  <figure class="highlight"><pre><code class="language-bash" data-lang="bash">sudo dpkg -i cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64.deb
+sudo apt-key add /var/cuda-repo-9-0-local/7fa2af80.pub
+sudo apt-get update
+sudo apt-get install cuda</code></pre></figure>
       </li>
-      <li>reboot and check install
-        <pre><code class="language-Shell">  nvidia-smi
-  nvcc --version
-</code></pre>
+      <li>reboot and check install.
+  <figure class="highlight"><pre><code class="language-bash" data-lang="bash">nvidia-smi
+nvcc --version</code></pre></figure>
       </li>
     </ol>
   </li>
+</ul>
+
+<ul>
   <li><strong>installing cuDNN v7.0.5</strong>. Read <a href="http://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html">cuDNN Installation Guide</a> to learn more detials.
     <ol>
       <li>Check prerequisite before install.</li>
       <li>download <a href="https://developer.nvidia.com/cudnn">cuDNN</a>.</li>
-      <li>install cuDNN.
-        <pre><code class="language-Shell">  sudo dpkg -i libcudnn7_7.0.5.15-1+cuda9.0_amd64.deb
-</code></pre>
-      </li>
+      <li>install cuDNN.<figure class="highlight"><pre><code class="language-shell" data-lang="shell">sudo dpkg -i libcudnn7_7.0.5.15-1+cuda9.0_amd64.deb</code></pre></figure></li>
       <li>set path variables. Add these lines to end of <code class="highlighter-rouge">/etc/profile</code> and reboot
-        <pre><code class="language-Shell">  export PATH=/usr/local/cuda/bin${PATH:+:PATH}
-  export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64
-  export CUDA_HOME=/usr/local/cuda
-</code></pre>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">export PATH=/usr/local/cuda/bin${PATH:+:PATH}
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64
+export CUDA_HOME=/usr/local/cuda</code></pre></figure>
       </li>
     </ol>
   </li>
@@ -158,20 +160,20 @@ sudo reboot
 <h3 id="step-3-installing-tensorflow">Step 3 installing Tensorflow</h3>
 
 <p>I use Anaconda environment to use Tensorflow, type the following instructions.</p>
-<pre><code class="language-Shell">conda create -n tensorflow pip python=3.6
-source activate tensorflow
-pip install tensorflow-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple
-</code></pre>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">conda create -n tensorflow pip <span class="nv">python</span><span class="o">=</span>3.6
+<span class="nb">source </span>activate tensorflow
+pip install tensorflow-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple</code></pre></figure>
 
 <h3 id="step-4-test-tensorflow">Step 4 test Tensorflow</h3>
 
 <p>type the following python code to test Tensorflow.</p>
-<pre><code class="language-Python">import tensorflow as tf
-hello = tf.constant('Hello, TensorFlow!')
-sess = tf.Session()
-print sess.run(hello)
-# Hello, TensorFlow!
-</code></pre>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="kn">as</span> <span class="nn">tf</span>
+<span class="n">hello</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="s">'Hello, TensorFlow!'</span><span class="p">)</span>
+<span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">hello</span><span class="p">)</span>
+<span class="c"># Hello, TensorFlow!</span></code></pre></figure>
 
 <h4 id="external-links"><em>External links</em></h4>
 <ul>
@@ -210,7 +212,7 @@ print sess.run(hello)
 
 
         <footer class="footer">
-          © Copyright 2017 allensll. Powered by <a href="http://www.jekyllnow.com">Jekyll Now</a>. Last updated: Sept 16, 2017.
+          © Copyright 2017 allensll. Powered by <a href="http://www.jekyllnow.com">Jekyll Now</a>. Last updated: March 25, 2018.
         </footer>
       </div>
     </div>
