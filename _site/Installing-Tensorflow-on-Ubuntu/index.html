@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A note about installing tensorflow – allensll – HomePage</title>
+
+        <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+
+    
+    <meta name="description" content="Recently, I want to use a pre-trained faster-rcnn to finish a persion dection task. As a beginner of Deep learning, I need to install Tensorflow in my computer, and it took me two days, so I decid to record the installation steps.
+
+" />
+    <meta property="og:description" content="Recently, I want to use a pre-trained faster-rcnn to finish a persion dection task. As a beginner of Deep learning, I need to install Tensorflow in my computer, and it took me two days, so I decid to record the installation steps.
+
+" />
+    
+    <meta name="author" content="allensll" />
+
+    
+    <meta property="og:title" content="A note about installing tensorflow" />
+    <meta property="twitter:title" content="A note about installing tensorflow" />
+    
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="allensll - HomePage" href="/feed.xml" />
+
+    <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+  </head>
+
+  <body>
+    <div class="wrapper-masthead">
+      <div class="container">
+        <header class="masthead clearfix">
+          <a href="/" class="site-avatar"><img src="https://raw.githubusercontent.com/allensll/allensll.github.io/master/images/logo.png" /></a>
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="/">allensll</a></h1>
+            <p class="site-description">HomePage</p>
+          </div>
+
+          <nav>
+            <a href="/">Blog</a>
+            <a href="/links">Links</a>
+            <a href="/about">About</a>
+          </nav>
+        </header>
+      </div>
+    </div>
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+  <h2>A note about installing tensorflow</h2>
+
+  <div class="entry">
+    <p>Recently, I want to use a pre-trained faster-rcnn to finish a persion dection task. As a beginner of Deep learning, I need to install Tensorflow in my computer, and it took me two days, so I decid to record the installation steps.</p>
+
+<p><a href="https://www.tensorflow.org/install/">Tensorflow’s Official Guide</a> is the first and the most important doc you should read.</p>
+
+<h3 id="my-device-and-version">My device and version</h3>
+<ul>
+  <li>Ubuntu 16.04</li>
+  <li>GeForce GT 710</li>
+  <li>CUDA Toolkit 9.0</li>
+  <li>cuDNN v7.0.5</li>
+  <li>Python 3.6</li>
+  <li>Tensorflow 1.6</li>
+</ul>
+
+<h3 id="step-1-installing-os">Step 1 installing OS</h3>
+
+<p>Tensorflow certainlly supports all commmon OS, and I choice Ubuntu 16.04 whitch same as official guide. There are two things need to be concerned</p>
+
+<ul>
+  <li>
+    <p>If you use a WiFi adapter to connect network, you should plug adapter into computer before run the installer, and then installer will automatically install and load suitable kernel modules.</p>
+  </li>
+  <li>
+    <p>CUDA Toolkit 9.0 request at least Kernel 4.4 for Ubuntu 16.04, so I should update Kernel after install Ubuntu. All mainline kernel build can be downloaded <a href="http://kernel.ubuntu.com/~kernel-ppa/mainline/">here</a> you can use wget command to download kernel.</p>
+    <pre><code class="language-Shell">wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.124/linux-headers-4.4.124-0404124_4.4.124-0404124.201803250430_all.deb
+wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.124/linux-headers-4.4.124-0404124-generic_4.4.124-0404124.201803250430_amd64.deb
+wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.124/linux-image-4.4.124-0404124-generic_4.4.124-0404124.201803250430_amd64.deb
+</code></pre>
+    <p>install the packages.</p>
+    <pre><code class="language-Shell">dpkg -i *.deb
+</code></pre>
+    <p>update grub and reboot the system.</p>
+    <pre><code class="language-Shell">sudo update-grub
+sudo reboot
+</code></pre>
+    <p>check the kernel version.</p>
+    <pre><code class="language-Shell">uname -r
+</code></pre>
+  </li>
+</ul>
+
+<h3 id="step-2-installing-nvidia-software">Step 2 installing NVIDIA software</h3>
+
+<p>In this step, two software, <a href="http://docs.nvidia.com/cuda/">CUDA Toolkit</a> and <a href="https://developer.nvidia.com/cudnn">cuDNN</a> will be installed, but first verify you have a CUDA-Capable GPU and Tensorflow only support whitch <strong>compute capability &gt;= 3.0</strong>. See <a href="https://developer.nvidia.com/cuda-gpus">here</a> for a list of supported GPU cards. I don’t find GT 710 in that list, so just google GT 710 to find the answer.</p>
+
+<ul>
+  <li><strong>installing CUDA Tookit 9.0</strong>. The NVIDIA drivers associated with CUDA Toolkit, so don’t need to install it alone. It is easy to encounter problems at this step.
+    <ol>
+      <li>Check prerequisite before install.</li>
+      <li>Download the <a href="http://developer.nvidia.com/cuda-downloads">NVIDIA CUDA Toolkit</a></li>
+      <li>Disable Noveau drivers.<br />
+  pushing <code class="highlighter-rouge">Ctrl</code>+<code class="highlighter-rouge">Alt</code>+<code class="highlighter-rouge">F1</code> and login,<br />
+  type <code class="highlighter-rouge">sudo service lightdm stop</code>,<br />
+  create a file: <code class="highlighter-rouge">/etc/modprobe.d/blacklist-nouveau.conf</code> and type follow:
+        <pre><code class="language-Shell">  blacklist nouveau
+  options nouveau modeset=0
+</code></pre>
+        <p>reboot and verify Noveau not loaded.</p>
+        <pre><code class="language-Shell">  lsmod | grep nouveau
+</code></pre>
+      </li>
+      <li>install cuda.
+        <pre><code class="language-Shell">  sudo dpkg -i cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64.deb
+  sudo apt-key add /var/cuda-repo-9-0-local/7fa2af80.pub
+  sudo apt-get update
+  sudo apt-get install cuda
+</code></pre>
+      </li>
+      <li>reboot and check install
+        <pre><code class="language-Shell">  nvidia-smi
+  nvcc --version
+</code></pre>
+      </li>
+    </ol>
+  </li>
+  <li><strong>installing cuDNN v7.0.5</strong>. Read <a href="http://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html">cuDNN Installation Guide</a> to learn more detials.
+    <ol>
+      <li>Check prerequisite before install.</li>
+      <li>download <a href="https://developer.nvidia.com/cudnn">cuDNN</a>.</li>
+      <li>install cuDNN.
+        <pre><code class="language-Shell">  sudo dpkg -i libcudnn7_7.0.5.15-1+cuda9.0_amd64.deb
+</code></pre>
+      </li>
+      <li>set path variables. Add these lines to end of <code class="highlighter-rouge">/etc/profile</code> and reboot
+        <pre><code class="language-Shell">  export PATH=/usr/local/cuda/bin${PATH:+:PATH}
+  export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64
+  export CUDA_HOME=/usr/local/cuda
+</code></pre>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<h3 id="step-3-installing-tensorflow">Step 3 installing Tensorflow</h3>
+
+<p>I use Anaconda environment to use Tensorflow, type the following instructions.</p>
+<pre><code class="language-Shell">conda create -n tensorflow pip python=3.6
+source activate tensorflow
+pip install tensorflow-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple
+</code></pre>
+
+<h3 id="step-4-test-tensorflow">Step 4 test Tensorflow</h3>
+
+<p>type the following python code to test Tensorflow.</p>
+<pre><code class="language-Python">import tensorflow as tf
+hello = tf.constant('Hello, TensorFlow!')
+sess = tf.Session()
+print sess.run(hello)
+# Hello, TensorFlow!
+</code></pre>
+
+<h4 id="external-links"><em>External links</em></h4>
+<ul>
+  <li><a href="https://blog.csdn.net/zhaoyu106/article/details/52793183">https://blog.csdn.net/zhaoyu106/article/details/52793183</a></li>
+  <li><a href="https://github.com/williamFalcon/tensorflow-gpu-install-ubuntu-16.04">https://github.com/williamFalcon/tensorflow-gpu-install-ubuntu-16.04</a></li>
+</ul>
+
+<p><br /></p>
+
+  </div>
+
+  <div class="date">
+    Written on March 25, 2018
+  </div>
+
+  
+</article>
+
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          <a href="https://dribbble.com/sunll90"><i class="svg-icon dribbble"></i></a>
+
+
+
+<a href="https://github.com/allensll"><i class="svg-icon github"></i></a>
+
+
+
+
+<a href="https://www.twitter.com/sunll90"><i class="svg-icon twitter"></i></a>
+
+
+
+
+        <footer class="footer">
+          © Copyright 2017 allensll. Powered by <a href="http://www.jekyllnow.com">Jekyll Now</a>. Last updated: Sept 16, 2017.
+        </footer>
+      </div>
+    </div>
+
+    
+
+  </body>
+</html>

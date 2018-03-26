@@ -1,4 +1,121 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-10-15T13:00:20+08:00</updated><id>http://localhost:4000/</id><title type="html">allensll</title><subtitle>HomePage</subtitle><entry><title type="html">A brief introduction to Dimensionality Reduction</title><link href="http://localhost:4000/Dimensionality-Reduction/" rel="alternate" type="text/html" title="A brief introduction to Dimensionality Reduction" /><published>2017-09-25T00:00:00+08:00</published><updated>2017-09-25T00:00:00+08:00</updated><id>http://localhost:4000/Dimensionality-Reduction</id><content type="html" xml:base="http://localhost:4000/Dimensionality-Reduction/">&lt;p&gt;Dimensionality reduction can be divided  into &lt;em&gt;feature selection&lt;/em&gt; and &lt;em&gt;feature extraction&lt;/em&gt;, this text concerns about feature extraction, for feature extraction, there are &lt;em&gt;linear dimensionality reduction&lt;/em&gt; and &lt;em&gt;nonlinear dimensionality reduction&lt;/em&gt; techniques.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.5.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-03-26T20:43:37+08:00</updated><id>http://localhost:4000/</id><title type="html">allensll</title><subtitle>HomePage</subtitle><entry><title type="html">A note about installing tensorflow</title><link href="http://localhost:4000/Installing-Tensorflow-on-Ubuntu/" rel="alternate" type="text/html" title="A note about installing tensorflow" /><published>2018-03-25T00:00:00+08:00</published><updated>2018-03-25T00:00:00+08:00</updated><id>http://localhost:4000/Installing-Tensorflow-on-Ubuntu</id><content type="html" xml:base="http://localhost:4000/Installing-Tensorflow-on-Ubuntu/">&lt;p&gt;Recently, I want to use a pre-trained faster-rcnn to finish a persion dection task. As a beginner of Deep learning, I need to install Tensorflow in my computer, and it took me two days, so I decid to record the installation steps.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.tensorflow.org/install/&quot;&gt;Tensorflow’s Official Guide&lt;/a&gt; is the first and the most important doc you should read.&lt;/p&gt;
+
+&lt;h3 id=&quot;my-device-and-version&quot;&gt;My device and version&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Ubuntu 16.04&lt;/li&gt;
+  &lt;li&gt;GeForce GT 710&lt;/li&gt;
+  &lt;li&gt;CUDA Toolkit 9.0&lt;/li&gt;
+  &lt;li&gt;cuDNN v7.0.5&lt;/li&gt;
+  &lt;li&gt;Python 3.6&lt;/li&gt;
+  &lt;li&gt;Tensorflow 1.6&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;step-1-installing-os&quot;&gt;Step 1 installing OS&lt;/h3&gt;
+
+&lt;p&gt;Tensorflow certainlly supports all commmon OS, and I choice Ubuntu 16.04 whitch same as official guide. There are two things need to be concerned&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;If you use a WiFi adapter to connect network, you should plug adapter into computer before run the installer, and then installer will automatically install and load suitable kernel modules.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;CUDA Toolkit 9.0 request at least Kernel 4.4 for Ubuntu 16.04, so I should update Kernel after install Ubuntu. All mainline kernel build can be downloaded &lt;a href=&quot;http://kernel.ubuntu.com/~kernel-ppa/mainline/&quot;&gt;here&lt;/a&gt; you can use wget command to download kernel.&lt;/p&gt;
+    &lt;pre&gt;&lt;code class=&quot;language-Shell&quot;&gt;wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.124/linux-headers-4.4.124-0404124_4.4.124-0404124.201803250430_all.deb
+wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.124/linux-headers-4.4.124-0404124-generic_4.4.124-0404124.201803250430_amd64.deb
+wget http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.4.124/linux-image-4.4.124-0404124-generic_4.4.124-0404124.201803250430_amd64.deb
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;p&gt;install the packages.&lt;/p&gt;
+    &lt;pre&gt;&lt;code class=&quot;language-Shell&quot;&gt;dpkg -i *.deb
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;p&gt;update grub and reboot the system.&lt;/p&gt;
+    &lt;pre&gt;&lt;code class=&quot;language-Shell&quot;&gt;sudo update-grub
+sudo reboot
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;p&gt;check the kernel version.&lt;/p&gt;
+    &lt;pre&gt;&lt;code class=&quot;language-Shell&quot;&gt;uname -r
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;step-2-installing-nvidia-software&quot;&gt;Step 2 installing NVIDIA software&lt;/h3&gt;
+
+&lt;p&gt;In this step, two software, &lt;a href=&quot;http://docs.nvidia.com/cuda/&quot;&gt;CUDA Toolkit&lt;/a&gt; and &lt;a href=&quot;https://developer.nvidia.com/cudnn&quot;&gt;cuDNN&lt;/a&gt; will be installed, but first verify you have a CUDA-Capable GPU and Tensorflow only support whitch &lt;strong&gt;compute capability &amp;gt;= 3.0&lt;/strong&gt;. See &lt;a href=&quot;https://developer.nvidia.com/cuda-gpus&quot;&gt;here&lt;/a&gt; for a list of supported GPU cards. I don’t find GT 710 in that list, so just google GT 710 to find the answer.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;installing CUDA Tookit 9.0&lt;/strong&gt;. The NVIDIA drivers associated with CUDA Toolkit, so don’t need to install it alone. It is easy to encounter problems at this step.
+    &lt;ol&gt;
+      &lt;li&gt;Check prerequisite before install.&lt;/li&gt;
+      &lt;li&gt;Download the &lt;a href=&quot;http://developer.nvidia.com/cuda-downloads&quot;&gt;NVIDIA CUDA Toolkit&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;Disable Noveau drivers.&lt;br /&gt;
+  pushing &lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl&lt;/code&gt;+&lt;code class=&quot;highlighter-rouge&quot;&gt;Alt&lt;/code&gt;+&lt;code class=&quot;highlighter-rouge&quot;&gt;F1&lt;/code&gt; and login,&lt;br /&gt;
+  type &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo service lightdm stop&lt;/code&gt;,&lt;br /&gt;
+  create a file: &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/modprobe.d/blacklist-nouveau.conf&lt;/code&gt; and type follow:
+        &lt;pre&gt;&lt;code class=&quot;language-Shell&quot;&gt;  blacklist nouveau
+  options nouveau modeset=0
+&lt;/code&gt;&lt;/pre&gt;
+        &lt;p&gt;reboot and verify Noveau not loaded.&lt;/p&gt;
+        &lt;pre&gt;&lt;code class=&quot;language-Shell&quot;&gt;  lsmod | grep nouveau
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/li&gt;
+      &lt;li&gt;install cuda.
+        &lt;pre&gt;&lt;code class=&quot;language-Shell&quot;&gt;  sudo dpkg -i cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64.deb
+  sudo apt-key add /var/cuda-repo-9-0-local/7fa2af80.pub
+  sudo apt-get update
+  sudo apt-get install cuda
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/li&gt;
+      &lt;li&gt;reboot and check install
+        &lt;pre&gt;&lt;code class=&quot;language-Shell&quot;&gt;  nvidia-smi
+  nvcc --version
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;installing cuDNN v7.0.5&lt;/strong&gt;. Read &lt;a href=&quot;http://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html&quot;&gt;cuDNN Installation Guide&lt;/a&gt; to learn more detials.
+    &lt;ol&gt;
+      &lt;li&gt;Check prerequisite before install.&lt;/li&gt;
+      &lt;li&gt;download &lt;a href=&quot;https://developer.nvidia.com/cudnn&quot;&gt;cuDNN&lt;/a&gt;.&lt;/li&gt;
+      &lt;li&gt;install cuDNN.
+        &lt;pre&gt;&lt;code class=&quot;language-Shell&quot;&gt;  sudo dpkg -i libcudnn7_7.0.5.15-1+cuda9.0_amd64.deb
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/li&gt;
+      &lt;li&gt;set path variables. Add these lines to end of &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/profile&lt;/code&gt; and reboot
+        &lt;pre&gt;&lt;code class=&quot;language-Shell&quot;&gt;  export PATH=/usr/local/cuda/bin${PATH:+:PATH}
+  export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64
+  export CUDA_HOME=/usr/local/cuda
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;step-3-installing-tensorflow&quot;&gt;Step 3 installing Tensorflow&lt;/h3&gt;
+
+&lt;p&gt;I use Anaconda environment to use Tensorflow, type the following instructions.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-Shell&quot;&gt;conda create -n tensorflow pip python=3.6
+source activate tensorflow
+pip install tensorflow-gpu -i https://pypi.tuna.tsinghua.edu.cn/simple
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;step-4-test-tensorflow&quot;&gt;Step 4 test Tensorflow&lt;/h3&gt;
+
+&lt;p&gt;type the following python code to test Tensorflow.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-Python&quot;&gt;import tensorflow as tf
+hello = tf.constant('Hello, TensorFlow!')
+sess = tf.Session()
+print sess.run(hello)
+# Hello, TensorFlow!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;external-links&quot;&gt;&lt;em&gt;External links&lt;/em&gt;&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://blog.csdn.net/zhaoyu106/article/details/52793183&quot;&gt;https://blog.csdn.net/zhaoyu106/article/details/52793183&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/williamFalcon/tensorflow-gpu-install-ubuntu-16.04&quot;&gt;https://github.com/williamFalcon/tensorflow-gpu-install-ubuntu-16.04&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Recently, I want to use a pre-trained faster-rcnn to finish a persion dection task. As a beginner of Deep learning, I need to install Tensorflow in my computer, and it took me two days, so I decid to record the installation steps.</summary></entry><entry><title type="html">A brief introduction to Dimensionality Reduction</title><link href="http://localhost:4000/Dimensionality-Reduction/" rel="alternate" type="text/html" title="A brief introduction to Dimensionality Reduction" /><published>2017-09-25T00:00:00+08:00</published><updated>2017-09-25T00:00:00+08:00</updated><id>http://localhost:4000/Dimensionality-Reduction</id><content type="html" xml:base="http://localhost:4000/Dimensionality-Reduction/">&lt;p&gt;Dimensionality reduction can be divided  into &lt;em&gt;feature selection&lt;/em&gt; and &lt;em&gt;feature extraction&lt;/em&gt;, this text concerns about feature extraction, for feature extraction, there are &lt;em&gt;linear dimensionality reduction&lt;/em&gt; and &lt;em&gt;nonlinear dimensionality reduction&lt;/em&gt; techniques.&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
