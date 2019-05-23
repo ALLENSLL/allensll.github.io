@@ -65,6 +65,8 @@ Ref: [G.Hinton's course](http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture
 
 ### Adam
 
+Adam can be viewed as a combination of RMSprop and momentum.
+
 $$
 \begin{aligned} m_{t} &=\beta_{1} m_{t-1}+\left(1-\beta_{1}\right) g_{t} \\ v_{t} &=\beta_{2} v_{t-1}+\left(1-\beta_{2}\right) g_{t}^{2} \\
 \hat{m}_{t} &=\frac{m_{t}}{1-\beta_{1}^{t}} \\ \hat{v}_{t} &=\frac{v_{t}}{1-\beta_{2}^{t}} \\
